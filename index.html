@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>dogAPI</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+</head>
+<body>
+    <header>
+        Get a random dog image!
+    </header>
+    <form>
+        <input type='text' placeholder='3' id='userInput'>
+        <input type="submit" value='Click for your dog pics!'>
+    </form>
+    <nav>
+        <button>
+        <a href='specific-breed'>See a specific breed</a>
+    </button>
+    </nav>
+    
+    <div class='results hidden'>
+    <img id='dog-pic-placeholder' alt='to'>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src='main.js'></script>
+</body>
+</html>
