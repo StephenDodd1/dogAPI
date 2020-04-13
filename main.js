@@ -2,6 +2,7 @@
 
 function getDogImage(numPic) {
   $('#userInput').val('');
+  console.log($('#userInput').val())
   fetch(`https://dog.ceo/api/breeds/image/random/${numPic}`)
     .then(response => response.json())
     .then(responseJson => 
@@ -12,13 +13,14 @@ function getDogImage(numPic) {
 function findUserInput() {
   $('form').on('submit', (event) => {
     $('.results').empty();
+    event.stopPropagation();
     event.preventDefault();
     let userNum = $('#userInput').val();
     console.log(typeof(userNum));
     if (typeof(Number(userNum)) == "number" && userNum < 51 && userNum > 0) {
       getDogImage(userNum);
     }
-    else {
+    else if (userNum !== '') {
       getDogImage(3);
     }
   });
