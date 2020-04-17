@@ -1,8 +1,14 @@
 function formatQuery(breed) {
     $('main').empty();
     fetch(`https://dog.ceo/api/breed/${breed}/images/random`)
-    .then(response => response.json())
-    .then(responseJson => displayResults(responseJson));
+    .then(response => {
+        if (response.ok) {
+        return response.json();
+      }
+      throw new Error(response.statusText);
+    })
+    .then(responseJson => displayResults(responseJson))
+    .catch(() => $('main').html('Sorry, this breed is not recognized. Try again.'))
 }
 
 
