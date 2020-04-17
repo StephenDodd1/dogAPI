@@ -1,8 +1,6 @@
 'use strict';
 
 function getDogImage(numPic) {
-  $('#userInput').val('');
-  console.log($('#userInput').val())
   fetch(`https://dog.ceo/api/breeds/image/random/${numPic}`)
     .then(response => response.json())
     .then(responseJson => 
@@ -16,18 +14,20 @@ function findUserInput() {
     event.stopPropagation();
     event.preventDefault();
     let userNum = $('#userInput').val();
-    console.log(typeof(userNum));
-    if (typeof(Number(userNum)) == "number" && userNum < 51 && userNum > 0) {
+    console.log(typeof(Number(userNum)));
+    if (typeof(Number(userNum)) === "number" && userNum < 51 && userNum > 0) {
       getDogImage(userNum);
     }
-    else if (userNum !== '') {
+    else {
+      alert("You didn't enter a valid number between 1 and 50. The default number is 3.")
       getDogImage(3);
     }
   });
 }
 
 function displayResults(responseJson) {
-  console.log(responseJson);
+  $('#userInput').val('');
+  $('.results').empty();
   for (let i = 0; i < (responseJson.message).length; i++)
   $('.results').append(
     `<img src="${responseJson.message[i]}" alt='dog pic!' id='dog-pic'>`
@@ -36,20 +36,9 @@ function displayResults(responseJson) {
   $('.results').removeClass('hidden');
 }
 
-function watchForm() {
-  $('form').submit(event => {
-    event.preventDefault();
-    findUserInput();
-  });
-}
 
 $(function() {
   console.log('App loaded! Waiting for submit!');
-  watchForm();
+  findUserInput();
 });
 
-function eventHandlers() {
-  findUserInput()
-}
-
-$(eventHandlers)
