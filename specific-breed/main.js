@@ -1,3 +1,5 @@
+'use strict';
+
 function formatQuery(breed) {
     $('main').empty();
     fetch(`https://dog.ceo/api/breed/${breed}/images/random`)
